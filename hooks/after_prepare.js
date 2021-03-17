@@ -53,34 +53,23 @@ module.exports = function(context) {
             replaceCryptKey_ios(pluginDir, key, iv);
 
         } else if (platform == 'android') {
+            var pluginDir;
             if(wwwDir.includes("main"))
             {
-                var pluginDir = path.join(platformPath, 'app/src/main/java');
+                pluginDir = path.join(platformPath, 'app/src/main/java');
             }
             else
             {
-                var pluginDir = path.join(platformPath, 'src');
+                pluginDir = path.join(platformPath, 'src');
             }
             replaceCryptKey_android(pluginDir, key, iv);
 
             var cfg = new ConfigParser(platformInfo.projectConfig.path);
-            var port = cfg.getGlobalPreference("cryptoPort");
-            if( port == '')
-            {
-                cfg.doc.getroot().getchildren().filter(function(child, idx, arr) {
-                    return (child.tag == 'content');
-                }).forEach(function(child) {
-                    child.attrib.src = 'http://localhost:8080/' + child.attrib.src;
-                });
-            }
-            else
-            {
-                cfg.doc.getroot().getchildren().filter(function(child, idx, arr) {
-                    return (child.tag == 'content');
-                }).forEach(function(child) {
-                    child.attrib.src = 'http://localhost:' + port + '/' + child.attrib.src;
-                });
-            }
+            cfg.doc.getroot().getchildren().filter(function(child, idx, arr) {
+                return (child.tag == 'content');
+            }).forEach(function(child) {
+                child.attrib.src = '/+++/' + child.attrib.src;
+            });
 
             cfg.write();
         }
