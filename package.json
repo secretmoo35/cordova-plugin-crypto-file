@@ -1,16 +1,45 @@
 {
-  "name": "cordova-plugin-crypto-file",
-  "version": "1.4.0",
-  "description": "This plugin to encrypt/decrypt the source files.",
-  "repository": {
+  "_from": "git+https://github.com/Carlosps/cordova-plugin-crypto-file.git",
+  "_id": "cordova-plugin-crypto-file@1.4.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/cordova-plugin-crypto-file",
+  "_phantomChildren": {},
+  "_requested": {
     "type": "git",
-    "url": "git+https://github.com/PeterHdd/cordova-plugin-crypto-file.git"
+    "raw": "https://github.com/Carlosps/cordova-plugin-crypto-file",
+    "rawSpec": "https://github.com/Carlosps/cordova-plugin-crypto-file",
+    "saveSpec": "git+https://github.com/Carlosps/cordova-plugin-crypto-file.git",
+    "fetchSpec": "https://github.com/Carlosps/cordova-plugin-crypto-file.git",
+    "gitCommittish": null
   },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "git+https://github.com/Carlosps/cordova-plugin-crypto-file.git#2d4ccf9786ceb34546b009f31da3658ec6783b70",
+  "_spec": "https://github.com/Carlosps/cordova-plugin-crypto-file",
+  "_where": "/Users/sarayutkungsaranuwat/Desktop/INDIGY/01 Product Management/01 WorkPlus/Development/WorkPlus_Mobile_Ionic5",
+  "author": {
+    "name": "PeterHdd"
+  },
+  "bugs": {
+    "url": "https://github.com/PeterHdd/cordova-plugin-crypto-file/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "This plugin to encrypt/decrypt the source files.",
+  "homepage": "https://github.com/PeterHdd/cordova-plugin-crypto-file#readme",
   "keywords": [
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios"
   ],
-  "author": "PeterHdd",
-  "license": "Apache version 2.0"
+  "license": "Apache version 2.0",
+  "name": "cordova-plugin-crypto-file",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeterHdd/cordova-plugin-crypto-file.git"
+  },
+  "version": "1.4.0"
 }

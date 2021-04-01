@@ -35,20 +35,28 @@ public class DecryptResource extends CordovaPlugin {
     ".css",
   };
 
+  private String URL_PREFIX;
+  private String launchUri;
+
+    public void changingPort(CordovaPreferences preferences){
+    String port      = preferences.getString("cryptoPort","8080");
+    URL_PREFIX       = "http://localhost:" + port + "/";
+  }
+
   @Override
   public Uri remapUri(Uri uri) {
-    if (uri.toString().indexOf("/+++/") > -1) {
+    changingPort(preferences);
+    this.launchUri = uri.toString();
+    if (this.launchUri.toString().startsWith(URL_PREFIX)) {
       return this.toPluginUri(uri);
-    } else {
-      return uri;
     }
+    return uri;
   }
 
   @Override
   public CordovaResourceApi.OpenForReadResult handleOpenForRead(Uri uri) throws IOException {
     Uri oriUri    = fromPluginUri(uri);
-    String uriStr = oriUri.toString().replace("/+++/", "/").split("\\?")[0];
-    
+    String uriStr = this.tofileUri(oriUri.toString().split("\\?")[0]);
     CordovaResourceApi.OpenForReadResult readResult =  this.webView.getResourceApi().openForRead(Uri.parse(uriStr), true);
 
     if (!isCryptFiles(uriStr)) {
@@ -82,6 +90,16 @@ public class DecryptResource extends CordovaPlugin {
 
     return new CordovaResourceApi.OpenForReadResult(
       readResult.uri, byteInputStream, readResult.mimeType, readResult.length, readResult.assetFd);
+  }
+
+  private String tofileUri(String uri) {
+    if (uri.startsWith(URL_PREFIX)) {
+      uri = uri.replace(URL_PREFIX, "file:///android_asset/www/");
+    }
+    if (uri.endsWith("/")) {
+      uri += "index.html";
+    }
+    return uri;
   }
 
   private boolean isCryptFiles(String uri) {
