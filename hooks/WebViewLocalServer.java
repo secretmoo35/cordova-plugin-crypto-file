@@ -255,14 +255,14 @@ public class WebViewLocalServer {
       return null;
     }
     Log.d("SERVER", "Handling local request: " + uri);
-    return null;
-    // if (isLocalFile(uri) || uri.getAuthority().equals(this.authority)) {
-    //   Log.d("SERVER", "Handling local request: " + uri.toString());
-    //   return handleLocalRequest(uri, handler, request);
-    // } else {
-    //   // return handleProxyRequest(uri, handler);
-    //   return null;
-    // }
+      
+    if (isLocalFile(uri) || uri.getAuthority().equals(this.authority)) {
+      Log.d("SERVER", "Handling local request: " + uri.toString());
+      return handleLocalRequest(uri, handler, request);
+    } else {
+      // return handleProxyRequest(uri, handler);
+      return null;
+    }
   }
 
   private boolean isLocalFile(Uri uri) {
