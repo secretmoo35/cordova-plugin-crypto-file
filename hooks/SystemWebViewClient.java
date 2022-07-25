@@ -6,9 +6,7 @@
        to you under the Apache License, Version 2.0 (the
        "License"); you may not use this file except in compliance
        with the License.  You may obtain a copy of the License at
-
          http://www.apache.org/licenses/LICENSE-2.0
-
        Unless required by applicable law or agreed to in writing,
        software distributed under the License is distributed on an
        "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -71,7 +69,7 @@ public class SystemWebViewClient extends WebViewClient {
         this.parentEngine = parentEngine;
 
         WebViewAssetLoader.Builder assetLoaderBuilder = new WebViewAssetLoader.Builder()
-                .setDomain(parentEngine.preferences.getString("hostname", "localhost"))
+                .setDomain(parentEngine.preferences.getString("hostname", "localhost").toLowerCase())
                 .setHttpAllowed(true);
 
         assetLoaderBuilder.addPathHandler("/", path -> {
@@ -372,8 +370,7 @@ public class SystemWebViewClient extends WebViewClient {
     @Override
     @SuppressWarnings("deprecation")
     public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-
-      try {
+        try {
             // Check the against the allow list and lock out access to the WebView directory
             // Changing this will cause problems for your application
             if (!parentEngine.pluginManager.shouldAllowRequest(url)) {
@@ -421,8 +418,8 @@ public class SystemWebViewClient extends WebViewClient {
         return false;
     }
 
-//    @Override
-//    public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
-//        return this.assetLoader.shouldInterceptRequest(request.getUrl());
-//    }
+    // @Override
+    // public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+    //     return this.assetLoader.shouldInterceptRequest(request.getUrl());
+    // }
 }
